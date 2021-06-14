@@ -1,0 +1,75 @@
+p {
+    margin: 0;
+}
+
+.u-container {
+    font-family: 'Open Sans', sans-serif;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.list-file {
+    width: 100%;
+    height: 68px;
+    padding-top: 10px;
+}
+
+.mt-10 {
+    margin-top: 10px !important;
+}
+
+.itemContainer {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+#list-file table tr td {
+    vertical-align: middle;
+}
+
+#upload-file form, .table-wrapper {
+    margin-top: 20px;
+}
+
+.progress {
+    margin-top: 20px;
+}
+
+#list td {
+    vertical-align: middle;
+}
+
+#list td.text-center {
+    padding: 7px;
+}
+
+.file-icon {
+    margin-right: 5px;
+    color: #1d68a7;
+}
+
+.btnOrgFile {
+    color: white;
+}
+
+.error-modal {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.dataTables_length label {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.btn-refresh {
+    margin-left: 30px;
+}
+
+#bar-value {
+    transition: width 0.3s ease;
+}
