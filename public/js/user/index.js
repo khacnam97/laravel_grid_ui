@@ -38,13 +38,13 @@ var user_id;
 $(document).on('click', '.delete', function(){
     user_id = $(this).attr('data-id');
     Swal.fire({
-        title: getMessage('Delete Confirm'),
-        text: getMessage('Delete Message'),
+        title: 'dddd',
+        text: 'delete',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d93535',
-        confirmButtonText: getMessage('Delete button'),
-        cancelButtonText: getMessage('Close')
+        confirmButtonText: 'Delete button',
+        cancelButtonText: 'Close'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
@@ -60,7 +60,8 @@ $(document).on('click', '.delete', function(){
                 },
                 success:function(data)
                 {
-                    dataTable.ajax.reload();
+                    // $( ".card" ).load( "user .card > " );
+                    // $( ".card-header" ).load( "user .card-header >" );
                     toastr.success(data.message);
                 },
                 error:function (data) {
@@ -72,41 +73,6 @@ $(document).on('click', '.delete', function(){
     })
 });
 
-//show swal trash
-$(document).on('click', '.trash', function(){
-    user_id = $(this).attr('data-id');
-    Swal.fire({
-        title: getMessage('Disable Confirm'),
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: getMessage('Disable button'),
-        cancelButtonText: getMessage('Close')
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "user/trash/"+ user_id,
-                type: 'post',
-                contentType:'application/json',
-                data: {
-                    "id": user_id,
-                    '_token': '{{csrf_token()}}'
-                },
-                success:function(data)
-                {
-                    dataTable.ajax.reload();
-                    toastr.success(data.message);
-                },
-                error:function (data) {
-                    toastr.error(data.responseJSON.message);
-                }
-            })
-
-        }
-    })
-});
 
 $(document).on('click', '.active-user', function(){
     user_id = $(this).attr('data-id');
@@ -132,12 +98,6 @@ $(document).on('click', '.active-user', function(){
     })
 });
 
-//create, edit  message success
-$(function () {
-    if (message) {
-        toastr.success(message);
-    }
-});
 
 $(document).ready(function() {
     $('thead tr td:last-child').append('<button type="button" id="grid_view_search_button" class="btn btn-primary"> Search </button>  <button type="button" id="grid_view_reset_button" class="btn btn-warning"> Reset </button>');

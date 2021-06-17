@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Ho_Chi_Minh',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,7 +161,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Spatie\Permission\PermissionServiceProvider::class,
+        yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -175,6 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Itstructure\GridView\GridViewServiceProvider::class,
+        Lavary\Menu\ServiceProvider::class,
 
     ],
 
@@ -228,7 +230,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Datatables' => yajra\DataTables\Facades\DataTables::class,
+        'Menu'      => Lavary\Menu\Facade::class,
 
     ],
 
