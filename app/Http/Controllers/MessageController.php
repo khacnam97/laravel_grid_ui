@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class MessageController extends Controller
 {
@@ -26,21 +27,25 @@ class MessageController extends Controller
         return view('chat.index', $data);
     }
 
-    public function send(Request $request)
+    public function send(Request $request): \Illuminate\Http\RedirectResponse
     {
         // ...
 
         // message is being sent
         $message = new Message;
         $message->setAttribute('from', auth()->user()->id);
-        $message->setAttribute('to', 56);
+        $message->setAttribute('to', $request->id);
         $message->setAttribute('user_id', 2);
         $message->setAttribute('message', $request->message);
 
         $message->save();
         // want to broadcast NewMessageNotification event
 //        broadcast(new HelloPusherEvent($message->message . ' ' .$message->created_at));
-        broadcast(new NewMessage($message));
-        return back();
+        broadcast(new NewMessage($message, $request->id));
+        return Redirect::back()->with('message','Operation Successful !');
+    }
+
+    public function laravelEcho() {
+        return view('broadcast', ['user_id' => auth()->user()->id]);
     }
 }

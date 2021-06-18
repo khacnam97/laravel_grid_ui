@@ -72,13 +72,7 @@
 <script>
     Pusher.logToConsole = true;
 
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: '4259d8c059891b5a9ba6',
-        cluster: 'ap1',
-        encrypted: true,
-        logToConsole: true
-    });
+    window.Echo.channel('messages' )
 
     Echo.private('user.{{ $user_id }}')
         .listen('NewMessageNotification', (e) => {

@@ -15,4 +15,8 @@ class Message extends Model
      * @var mixed
      */
     private $to;
+    /**
+     * @var mixed
+     */
+    private $from;
 }

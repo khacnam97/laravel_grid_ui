@@ -14,17 +14,20 @@
             @endforeach
         </ul>
     </div>
-    <form method="POST" action="{{route('message.send')}}">
-        @csrf
+    <form  action="{{route('message.send')}}">
+
         <div class="form-group row">
             <div class="col-md-6">
                 <input id="message" type="text" class="form-control @error('message') is-invalid @enderror" name="message" value="{{ old('message') }}" autocomplete="message" autofocus>
+            </div>
+            <div class="col-md-6">
+                <input id="id" type="hidden"  class="form-control @error('id') is-invalid @enderror" name="id" value="{{ $id }}" autocomplete="id" autofocus>
             </div>
         </div>
 
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
+                <button id="idForm" type="" class="btn btn-primary">
                    Send
                 </button>
             </div>
@@ -41,14 +44,16 @@
     });
 
     //Subscribe to the channel we specified in our Laravel Event
-    var channel = pusher.channel;
-
+    let channels = ['messages.'+ {{ $id  }} + '.'+ {{auth()->user()->id}}, 'messages.'+ {{auth()->user()->id}} + '.'+ {{ $id  }}].map(channelName => pusher.subscribe(channelName));
     //Bind a function to a Event (the full Laravel class)
-    channel.bind('App\\Events\\NewMessage', addMessage);
-
+    let channel;
+    for (channel of channels ){
+        channel.bind('App\\Events\\NewMessage', addMessage)
+    }
     function addMessage(data) {
+        const event = new Date(data.message.created_at);
         var listItem = $("<li class='list-group-item'></li>");
-        listItem.html(data.message.message + " " +  data.message.created_at);
+        listItem.html(data.message.message + " " +  event.toLocaleDateString() + " "+ event.toLocaleTimeString());
         $('#messages').append(listItem);
     }
 </script>

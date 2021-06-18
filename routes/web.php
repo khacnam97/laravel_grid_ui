@@ -31,6 +31,7 @@ Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'getE
 Route::post('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'postEdit'])->name('user.postEdit');
 Route::post('message/send', [App\Http\Controllers\MessageController::class, 'send'])->name('message.send');
 Route::get('message/index', [App\Http\Controllers\MessageController::class, 'index'])->name('message.index');
+Route::get('message/echo', [App\Http\Controllers\MessageController::class, 'laravelEcho'])->name('laravel.echo');
 Route::get('/pusher', function() {
     event(new App\Events\HelloPusherEvent('Hi there Pusher!'));
     return "Event has been sent!";
